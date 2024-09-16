@@ -1,0 +1,647 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [{ "name": "owner_", "type": "address", "internalType": "address" }],
+    "stateMutability": "nonpayable"
+  },
+  { "type": "receive", "stateMutability": "payable" },
+  {
+    "type": "function",
+    "name": "addNftPolicy",
+    "inputs": [
+      {
+        "name": "policy_",
+        "type": "tuple",
+        "internalType": "struct NftPolicy",
+        "components": [
+          { "name": "masterCopy", "type": "address", "internalType": "address" },
+          { "name": "merkleRoot", "type": "bytes32", "internalType": "bytes32" },
+          { "name": "feeRecipients", "type": "address[]", "internalType": "address[]" },
+          { "name": "feeRanges", "type": "uint16[2][]", "internalType": "uint16[2][]" },
+          { "name": "royalty", "type": "uint16[2]", "internalType": "uint16[2]" },
+          { "name": "paused", "type": "bool", "internalType": "bool" }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "addSplitterPolicy",
+    "inputs": [
+      {
+        "name": "policy_",
+        "type": "tuple",
+        "internalType": "struct SplitterPolicy",
+        "components": [
+          { "name": "masterCopy", "type": "address", "internalType": "address" },
+          { "name": "merkleRoot", "type": "bytes32", "internalType": "bytes32" },
+          { "name": "feeRecipients", "type": "address[]", "internalType": "address[]" },
+          { "name": "feeRanges", "type": "uint16[2][]", "internalType": "uint16[2][]" },
+          { "name": "paused", "type": "bool", "internalType": "bool" }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "addTreasuryPolicy",
+    "inputs": [
+      {
+        "name": "policy_",
+        "type": "tuple",
+        "internalType": "struct TreasuryPolicy",
+        "components": [
+          { "name": "masterCopy", "type": "address", "internalType": "address" },
+          { "name": "merkleRoot", "type": "bytes32", "internalType": "bytes32" },
+          { "name": "feeRecipients", "type": "address[]", "internalType": "address[]" },
+          { "name": "feeRanges", "type": "uint16[2][]", "internalType": "uint16[2][]" },
+          { "name": "royalty", "type": "uint16[2]", "internalType": "uint16[2]" },
+          { "name": "interestRate", "type": "uint16[2]", "internalType": "uint16[2]" },
+          { "name": "termLimit", "type": "uint256[2]", "internalType": "uint256[2]" },
+          { "name": "paused", "type": "bool", "internalType": "bool" }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "approved",
+    "inputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "outputs": [{ "name": "", "type": "bool", "internalType": "bool" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "cancelOwnershipHandover",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "chainEid",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint32", "internalType": "uint32" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "completeOwnershipHandover",
+    "inputs": [{ "name": "pendingOwner", "type": "address", "internalType": "address" }],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "createCollection",
+    "inputs": [
+      {
+        "name": "config_",
+        "type": "tuple",
+        "internalType": "struct NftConfig",
+        "components": [
+          { "name": "policyId", "type": "uint64", "internalType": "uint64" },
+          { "name": "name", "type": "string", "internalType": "string" },
+          { "name": "symbol", "type": "string", "internalType": "string" },
+          { "name": "fees", "type": "uint16[]", "internalType": "uint16[]" },
+          { "name": "royalty", "type": "uint16", "internalType": "uint16" },
+          { "name": "maxSupply", "type": "uint32", "internalType": "uint32" },
+          { "name": "price", "type": "uint256", "internalType": "uint256" },
+          { "name": "parent", "type": "address", "internalType": "address" }
+        ]
+      },
+      { "name": "salt_", "type": "bytes32", "internalType": "bytes32" }
+    ],
+    "outputs": [{ "name": "collection_", "type": "address", "internalType": "address" }],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "createTreasury",
+    "inputs": [
+      { "name": "collection_", "type": "address", "internalType": "address" },
+      { "name": "parent_", "type": "address", "internalType": "address" },
+      {
+        "name": "config_",
+        "type": "tuple",
+        "internalType": "struct TreasuryConfig",
+        "components": [
+          { "name": "policyId", "type": "uint64", "internalType": "uint64" },
+          { "name": "collateral", "type": "address", "internalType": "address" },
+          { "name": "royalty", "type": "uint16", "internalType": "uint16" },
+          { "name": "interestRate", "type": "uint16", "internalType": "uint16" },
+          { "name": "termLimit", "type": "uint256", "internalType": "uint256" },
+          { "name": "fees", "type": "uint16[]", "internalType": "uint16[]" }
+        ]
+      },
+      {
+        "name": "splitterConfig_",
+        "type": "tuple",
+        "internalType": "struct SplitterConfig",
+        "components": [
+          { "name": "policyId", "type": "uint64", "internalType": "uint64" },
+          { "name": "fees", "type": "uint16[]", "internalType": "uint16[]" }
+        ]
+      }
+    ],
+    "outputs": [
+      { "name": "treasury_", "type": "address", "internalType": "address" },
+      { "name": "splitter_", "type": "address", "internalType": "address" }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getNftPolicy",
+    "inputs": [{ "name": "id_", "type": "uint64", "internalType": "uint64" }],
+    "outputs": [
+      {
+        "name": "policy_",
+        "type": "tuple",
+        "internalType": "struct NftPolicy",
+        "components": [
+          { "name": "masterCopy", "type": "address", "internalType": "address" },
+          { "name": "merkleRoot", "type": "bytes32", "internalType": "bytes32" },
+          { "name": "feeRecipients", "type": "address[]", "internalType": "address[]" },
+          { "name": "feeRanges", "type": "uint16[2][]", "internalType": "uint16[2][]" },
+          { "name": "royalty", "type": "uint16[2]", "internalType": "uint16[2]" },
+          { "name": "paused", "type": "bool", "internalType": "bool" }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getSplitterPolicy",
+    "inputs": [{ "name": "id_", "type": "uint64", "internalType": "uint64" }],
+    "outputs": [
+      {
+        "name": "policy_",
+        "type": "tuple",
+        "internalType": "struct SplitterPolicy",
+        "components": [
+          { "name": "masterCopy", "type": "address", "internalType": "address" },
+          { "name": "merkleRoot", "type": "bytes32", "internalType": "bytes32" },
+          { "name": "feeRecipients", "type": "address[]", "internalType": "address[]" },
+          { "name": "feeRanges", "type": "uint16[2][]", "internalType": "uint16[2][]" },
+          { "name": "paused", "type": "bool", "internalType": "bool" }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getTreasuryPolicy",
+    "inputs": [{ "name": "id_", "type": "uint64", "internalType": "uint64" }],
+    "outputs": [
+      {
+        "name": "policy_",
+        "type": "tuple",
+        "internalType": "struct TreasuryPolicy",
+        "components": [
+          { "name": "masterCopy", "type": "address", "internalType": "address" },
+          { "name": "merkleRoot", "type": "bytes32", "internalType": "bytes32" },
+          { "name": "feeRecipients", "type": "address[]", "internalType": "address[]" },
+          { "name": "feeRanges", "type": "uint16[2][]", "internalType": "uint16[2][]" },
+          { "name": "royalty", "type": "uint16[2]", "internalType": "uint16[2]" },
+          { "name": "interestRate", "type": "uint16[2]", "internalType": "uint16[2]" },
+          { "name": "termLimit", "type": "uint256[2]", "internalType": "uint256[2]" },
+          { "name": "paused", "type": "bool", "internalType": "bool" }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "initialize",
+    "inputs": [{ "name": "weth_", "type": "address", "internalType": "address" }],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "nftIndex",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint64", "internalType": "uint64" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "nftPolicy",
+    "inputs": [{ "name": "id_", "type": "uint64", "internalType": "uint64" }],
+    "outputs": [
+      {
+        "name": "policy_",
+        "type": "tuple",
+        "internalType": "struct NftPolicy",
+        "components": [
+          { "name": "masterCopy", "type": "address", "internalType": "address" },
+          { "name": "merkleRoot", "type": "bytes32", "internalType": "bytes32" },
+          { "name": "feeRecipients", "type": "address[]", "internalType": "address[]" },
+          { "name": "feeRanges", "type": "uint16[2][]", "internalType": "uint16[2][]" },
+          { "name": "royalty", "type": "uint16[2]", "internalType": "uint16[2]" },
+          { "name": "paused", "type": "bool", "internalType": "bool" }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "nftPolicyOf",
+    "inputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "outputs": [{ "name": "", "type": "uint64", "internalType": "uint64" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "onERC721Received",
+    "inputs": [
+      { "name": "", "type": "address", "internalType": "address" },
+      { "name": "", "type": "address", "internalType": "address" },
+      { "name": "", "type": "uint256", "internalType": "uint256" },
+      { "name": "", "type": "bytes", "internalType": "bytes" }
+    ],
+    "outputs": [{ "name": "", "type": "bytes4", "internalType": "bytes4" }],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "owner",
+    "inputs": [],
+    "outputs": [{ "name": "result", "type": "address", "internalType": "address" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "ownershipHandoverExpiresAt",
+    "inputs": [{ "name": "pendingOwner", "type": "address", "internalType": "address" }],
+    "outputs": [{ "name": "result", "type": "uint256", "internalType": "uint256" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "pauseNftPolicy",
+    "inputs": [
+      { "name": "id_", "type": "uint64", "internalType": "uint64" },
+      { "name": "paused_", "type": "bool", "internalType": "bool" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "pauseSplitterPolicy",
+    "inputs": [
+      { "name": "id_", "type": "uint64", "internalType": "uint64" },
+      { "name": "paused_", "type": "bool", "internalType": "bool" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "pauseTreasuryPolicy",
+    "inputs": [
+      { "name": "id_", "type": "uint64", "internalType": "uint64" },
+      { "name": "paused_", "type": "bool", "internalType": "bool" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "renounceOwnership",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "requestOwnershipHandover",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "rescueERC20",
+    "inputs": [
+      { "name": "token_", "type": "address", "internalType": "address" },
+      { "name": "recipient_", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "rescueERC721",
+    "inputs": [
+      { "name": "token_", "type": "address", "internalType": "address" },
+      { "name": "recipient_", "type": "address", "internalType": "address" },
+      { "name": "tokenId_", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setApprovedCreator",
+    "inputs": [
+      { "name": "wallet_", "type": "address", "internalType": "address" },
+      { "name": "approved_", "type": "bool", "internalType": "bool" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setEid",
+    "inputs": [{ "name": "eid_", "type": "uint32", "internalType": "uint32" }],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "splitterIndex",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint64", "internalType": "uint64" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "splitterPolicy",
+    "inputs": [{ "name": "id_", "type": "uint64", "internalType": "uint64" }],
+    "outputs": [
+      {
+        "name": "policy_",
+        "type": "tuple",
+        "internalType": "struct SplitterPolicy",
+        "components": [
+          { "name": "masterCopy", "type": "address", "internalType": "address" },
+          { "name": "merkleRoot", "type": "bytes32", "internalType": "bytes32" },
+          { "name": "feeRecipients", "type": "address[]", "internalType": "address[]" },
+          { "name": "feeRanges", "type": "uint16[2][]", "internalType": "uint16[2][]" },
+          { "name": "paused", "type": "bool", "internalType": "bool" }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "splitterPolicyOf",
+    "inputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "outputs": [{ "name": "", "type": "uint64", "internalType": "uint64" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "transferOwnership",
+    "inputs": [{ "name": "newOwner", "type": "address", "internalType": "address" }],
+    "outputs": [],
+    "stateMutability": "payable"
+  },
+  {
+    "type": "function",
+    "name": "treasuryIndex",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "uint64", "internalType": "uint64" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "treasuryOf",
+    "inputs": [{ "name": "collection", "type": "address", "internalType": "address" }],
+    "outputs": [{ "name": "treasury", "type": "address", "internalType": "address" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "treasuryPolicy",
+    "inputs": [{ "name": "id_", "type": "uint64", "internalType": "uint64" }],
+    "outputs": [
+      {
+        "name": "policy_",
+        "type": "tuple",
+        "internalType": "struct TreasuryPolicy",
+        "components": [
+          { "name": "masterCopy", "type": "address", "internalType": "address" },
+          { "name": "merkleRoot", "type": "bytes32", "internalType": "bytes32" },
+          { "name": "feeRecipients", "type": "address[]", "internalType": "address[]" },
+          { "name": "feeRanges", "type": "uint16[2][]", "internalType": "uint16[2][]" },
+          { "name": "royalty", "type": "uint16[2]", "internalType": "uint16[2]" },
+          { "name": "interestRate", "type": "uint16[2]", "internalType": "uint16[2]" },
+          { "name": "termLimit", "type": "uint256[2]", "internalType": "uint256[2]" },
+          { "name": "paused", "type": "bool", "internalType": "bool" }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "treasuryPolicyOf",
+    "inputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "outputs": [{ "name": "", "type": "uint64", "internalType": "uint64" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "weth",
+    "inputs": [],
+    "outputs": [{ "name": "", "type": "address", "internalType": "address" }],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "withdraw",
+    "inputs": [{ "name": "recipient_", "type": "address", "internalType": "address" }],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "event",
+    "name": "ApprovedCreatorUpdate",
+    "inputs": [
+      { "name": "wallet_", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "status_", "type": "bool", "indexed": false, "internalType": "bool" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "CollectionCreated",
+    "inputs": [
+      { "name": "creator_", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "collection_", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "salt_", "type": "bytes32", "indexed": true, "internalType": "bytes32" },
+      { "name": "policyId_", "type": "uint64", "indexed": false, "internalType": "uint64" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "FeeUpdate",
+    "inputs": [
+      {
+        "name": "feeRecipients_",
+        "type": "address[]",
+        "indexed": false,
+        "internalType": "address[]"
+      },
+      { "name": "fees_", "type": "uint16[]", "indexed": false, "internalType": "uint16[]" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Initialized",
+    "inputs": [{ "name": "version", "type": "uint64", "indexed": false, "internalType": "uint64" }],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "NftPolicyUpdate",
+    "inputs": [
+      { "name": "id_", "type": "uint64", "indexed": true, "internalType": "uint64" },
+      {
+        "name": "config_",
+        "type": "tuple",
+        "indexed": false,
+        "internalType": "struct NftPolicy",
+        "components": [
+          { "name": "masterCopy", "type": "address", "internalType": "address" },
+          { "name": "merkleRoot", "type": "bytes32", "internalType": "bytes32" },
+          { "name": "feeRecipients", "type": "address[]", "internalType": "address[]" },
+          { "name": "feeRanges", "type": "uint16[2][]", "internalType": "uint16[2][]" },
+          { "name": "royalty", "type": "uint16[2]", "internalType": "uint16[2]" },
+          { "name": "paused", "type": "bool", "internalType": "bool" }
+        ]
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "OwnershipHandoverCanceled",
+    "inputs": [
+      { "name": "pendingOwner", "type": "address", "indexed": true, "internalType": "address" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "OwnershipHandoverRequested",
+    "inputs": [
+      { "name": "pendingOwner", "type": "address", "indexed": true, "internalType": "address" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "OwnershipTransferred",
+    "inputs": [
+      { "name": "oldOwner", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "newOwner", "type": "address", "indexed": true, "internalType": "address" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SplitterCreated",
+    "inputs": [
+      { "name": "creator_", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "collection_", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "splitter_", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "policyId_", "type": "uint64", "indexed": false, "internalType": "uint64" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SplitterPolicyUpdate",
+    "inputs": [
+      { "name": "id_", "type": "uint64", "indexed": true, "internalType": "uint64" },
+      {
+        "name": "config_",
+        "type": "tuple",
+        "indexed": false,
+        "internalType": "struct SplitterPolicy",
+        "components": [
+          { "name": "masterCopy", "type": "address", "internalType": "address" },
+          { "name": "merkleRoot", "type": "bytes32", "internalType": "bytes32" },
+          { "name": "feeRecipients", "type": "address[]", "internalType": "address[]" },
+          { "name": "feeRanges", "type": "uint16[2][]", "internalType": "uint16[2][]" },
+          { "name": "paused", "type": "bool", "internalType": "bool" }
+        ]
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TreasuryCreated",
+    "inputs": [
+      { "name": "creator_", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "collection_", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "treasury_", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "policyId_", "type": "uint64", "indexed": false, "internalType": "uint64" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TreasuryPolicyUpdate",
+    "inputs": [
+      { "name": "id_", "type": "uint64", "indexed": true, "internalType": "uint64" },
+      {
+        "name": "config_",
+        "type": "tuple",
+        "indexed": false,
+        "internalType": "struct TreasuryPolicy",
+        "components": [
+          { "name": "masterCopy", "type": "address", "internalType": "address" },
+          { "name": "merkleRoot", "type": "bytes32", "internalType": "bytes32" },
+          { "name": "feeRecipients", "type": "address[]", "internalType": "address[]" },
+          { "name": "feeRanges", "type": "uint16[2][]", "internalType": "uint16[2][]" },
+          { "name": "royalty", "type": "uint16[2]", "internalType": "uint16[2]" },
+          { "name": "interestRate", "type": "uint16[2]", "internalType": "uint16[2]" },
+          { "name": "termLimit", "type": "uint256[2]", "internalType": "uint256[2]" },
+          { "name": "paused", "type": "bool", "internalType": "bool" }
+        ]
+      }
+    ],
+    "anonymous": false
+  },
+  { "type": "error", "name": "AddressAlreadySet", "inputs": [] },
+  { "type": "error", "name": "AddressIsZero", "inputs": [] },
+  { "type": "error", "name": "AlreadyInitialized", "inputs": [] },
+  { "type": "error", "name": "ArrayLength", "inputs": [] },
+  {
+    "type": "error",
+    "name": "ConfigUnknown",
+    "inputs": [{ "name": "id_", "type": "uint256", "internalType": "uint256" }]
+  },
+  { "type": "error", "name": "InvalidCollection", "inputs": [] },
+  { "type": "error", "name": "InvalidConfig", "inputs": [] },
+  { "type": "error", "name": "InvalidFeePercent", "inputs": [] },
+  { "type": "error", "name": "InvalidInitialization", "inputs": [] },
+  { "type": "error", "name": "InvalidPolicy", "inputs": [] },
+  { "type": "error", "name": "InvalidRange", "inputs": [] },
+  { "type": "error", "name": "NewOwnerIsZeroAddress", "inputs": [] },
+  { "type": "error", "name": "NoHandoverRequest", "inputs": [] },
+  { "type": "error", "name": "NotInitializing", "inputs": [] },
+  { "type": "error", "name": "SplitterExists", "inputs": [] },
+  { "type": "error", "name": "TreasuryExists", "inputs": [] },
+  { "type": "error", "name": "Unauthorized", "inputs": [] }
+]

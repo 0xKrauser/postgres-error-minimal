@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: LicenseRef-AllRightsReserved
+#
+# License-Url: https://github.com/beramarket/torchbearer/LICENSES/LicenseRef-AllRightsReserved.txt
+#
+# SPDX-FileType: SOURCE
+#
+# SPDX-FileCopyrightText: 2024 Johannes Krauser III <detroitmetalcrypto@gmail.com>
+#
+# SPDX-FileContributor: Johannes Krauser III <detroitmetalcrypto@gmail.com>
+
+type Contract @entity {
+  id: ID!
+  chainId: Int!
+  address: String!
+  # contract info
+  wallet: Wallet!
+  creator: Wallet
+  owner: Wallet
+  paused: Boolean
+  # timestamps
+  createdBlockNumber: Int
+  createdTimestamp: Int
+  encounteredBlockNumber: Int
+  encounteredTimestamp: Int
+  updatedBlockNumber: Int!
+  updatedTimestamp: Int!
+}
+
+type Wallet @entity {
+  id: ID!
+  contract: Contract
+  collectionsOwnedCount: Int!
+  encounteredTimestamp: Int!
+  updatedTimestamp: Int!
+}

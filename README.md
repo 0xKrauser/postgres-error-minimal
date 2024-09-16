@@ -1,1 +1,1 @@
-Minimal reproduction example
+# Minimal error reproduction example

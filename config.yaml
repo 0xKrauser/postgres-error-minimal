@@ -1,0 +1,52 @@
+# SPDX-License-Identifier: NOASSERTION
+#
+# SPDX-FileType: SOURCE
+#
+# SPDX-FileCopyrightText: 2024 Johannes Krauser III <detroitmetalcrypto@gmail.com>
+#
+# SPDX-FileContributor: Johannes Krauser III <detroitmetalcrypto@gmail.com>
+
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: torchbearer
+field_selection:
+  transaction_fields:
+    - "hash"
+    - "from"
+    - "transactionIndex"
+    - "input"
+networks:
+  - id: 80084
+    start_block: 0
+    end_block: null
+    contracts:
+      - name: Ownable
+        handler: ./src/contracts/ownable/handlers.ts
+        abi_file_path: ./abi/ownable.json
+        events:
+          - event: OwnershipTransferred
+      #      - name: Launchpad
+      #        address: "0xa7C46bD39E86fDAFe2837CAa800307850133388d"
+      #        handler: ./src/contracts/launchpad/handlers.ts
+      #        abi_file_path: ./abi/launchpad.json
+      #        events:
+      #          - event: LaunchpadFeeUpdate
+      #          - event: CreatorFeeUpdate
+      #          - event: MarketRoyaltiesUpdate
+      #          - event: SplitterCreatorFeeUpdate
+      #          - event: TreasuryRoyaltiesUpdate
+      #          - event: InterestUpdate
+      #          - event: MinAllocationUpdate
+      #          - event: ApprovedCreatorUpdate
+      #          - event: TreasuryCreated
+      #          - event: CollectionCreated
+      - name: Factory
+        address: "0x596059Ca22d7985A35790F51686B9bD469ab8240"
+        handler: ./src/contracts/factory/handlers.ts
+        abi_file_path: ./abi/factory.json
+        events:
+          - event: CollectionCreated
+      - name: NftCollection
+        handler: ./src/contracts/collection/handlers.ts
+        abi_file_path: ./abi/collection.json
+        events:
+          - event: Transfer
